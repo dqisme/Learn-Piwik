@@ -6,7 +6,7 @@ db_service_name=$service_name-db
 db_password=123abcd
 http_service_name=$service_name-http
 
-docker run --name $db_service_name -p 3306:3306 -e MYSQL_ROOT_PASSWORD=$db_password -v `pwd`/mysql/runtime:/var/lib/mysql -d mysql
+docker run --name $db_service_name -p 3306:3306 -e MYSQL_ROOT_PASSWORD=$db_password -v `pwd`/database:/var/lib/mysql -d mysql
 
 docker run --name $piwik_service_name --link $db_service_name:db -p 9000:9000 -v `pwd`/config:/var/www/html/config -d piwik
 
